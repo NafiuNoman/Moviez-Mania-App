@@ -1,83 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="#181a1b"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        app:cardCornerRadius="@dimen/cardview_default_radius"
-        app:cardElevation="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <data>
+        <variable
+            name="movieList"
+            type="com.example.mymovielist.InsideModel" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="308dp"
-            android:layout_height="match_parent"
-            android:background="#1c1e1f"
-            android:padding="5dp"
-            android:paddingTop="10dp"
+    </data>
 
-            tools:layout_editor_absoluteX="1dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="#181a1b"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/IdRowTitleName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
-                android:fontFamily="@font/source_sans_pro_black"
-                android:gravity="left"
-                android:text="title here"
-                android:textColor="#E8E6E3"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:cardCornerRadius="@dimen/cardview_default_radius"
+            app:cardElevation="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/IdMovieImage"
-                app:layout_constraintTop_toBottomOf="@+id/IdMovieImage" />
-
-            <TextView
-                android:id="@+id/IdRowDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/source_sans_pro_black"
-                android:text="02-11-2021"
-                android:textColor="#939392"
-
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/IdRowTitleName"
-                app:layout_constraintTop_toBottomOf="@+id/IdRowTitleName" />
-
-            <ImageView
-                android:id="@+id/IdMovieImage"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="308dp"
-                android:layout_height="510dp"
-                android:layout_marginStart="2dp"
-                android:layout_marginLeft="2dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginEnd="2dp"
-                android:layout_marginRight="2dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@tools:sample/avatars" />
+                android:layout_height="match_parent"
+                android:background="#1c1e1f"
+                android:padding="5dp"
+                android:paddingTop="10dp"
+
+                tools:layout_editor_absoluteX="1dp">
+
+                <TextView
+                    android:id="@+id/IdRowTitleName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:fontFamily="@font/source_sans_pro_black"
+                    android:gravity="left"
+                    android:hint="title here"
+                    android:textColorHint="#fff"
+                    android:text="@{movieList.title}"
+                    android:textColor="#E8E6E3"
+
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/IdMovieImage"
+                    app:layout_constraintTop_toBottomOf="@+id/IdMovieImage" />
+
+                <TextView
+                    android:id="@+id/IdRowDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/source_sans_pro_black"
+                    android:hint="02-11-2021"
+                    android:textColorHint="#fff"
+                    android:text="@{movieList.release_date}"
+                    android:textColor="#939392"
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/IdRowTitleName"
+                    app:layout_constraintTop_toBottomOf="@+id/IdRowTitleName" />
+
+                <ImageView
+                    android:load_image="@{movieList.poster_path}"
+                    android:id="@+id/IdMovieImage"
+                    android:layout_width="308dp"
+                    android:layout_height="510dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginRight="2dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:srcCompat="@tools:sample/avatars" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

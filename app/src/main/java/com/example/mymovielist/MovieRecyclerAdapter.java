@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.mymovielist.databinding.MovierowBinding;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -18,36 +19,28 @@ import java.util.List;
 public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdapter.MovieViewHolder> {
 
     List<InsideModel> list;
-    String imageUrlFirstPart = "https://image.tmdb.org/t/p/w500";
-
 
     public MovieRecyclerAdapter(List<InsideModel> list) {
         this.list = list;
     }
 
-    @NonNull
+
     @Override
-    public MovieViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
+    public MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
 
-        View view = layoutInflater.inflate(R.layout.movierow, parent, false);
+        MovierowBinding movierowBinding = MovierowBinding.inflate(layoutInflater, parent, false);
 
-        MovieViewHolder movieViewHolder = new MovieViewHolder(view);
+        MovieViewHolder movieViewHolder = new MovieViewHolder(movierowBinding);
 
         return movieViewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull @org.jetbrains.annotations.NotNull MovieRecyclerAdapter.MovieViewHolder holder, int position) {
+    public void onBindViewHolder(MovieRecyclerAdapter.MovieViewHolder holder, int position) {
 
-
-        holder.title.setText(list.get(position).getTitle());
-        holder.date.setText(list.get(position).getRelease_date());
-
-        Glide.with(holder.imageView.getContext()).load(imageUrlFirstPart + list.get(position).getPoster_path()).into(holder.imageView);
-
-
+        holder.movierowBinding.setMovieList(list.get(position));
 
     }
 
@@ -59,16 +52,13 @@ public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdap
 
     public class MovieViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView imageView;
-        TextView title,date;
+        MovierowBinding movierowBinding;
 
 
-        public MovieViewHolder(@NonNull @org.jetbrains.annotations.NotNull View itemView) {
-            super(itemView);
+        public MovieViewHolder(MovierowBinding movierowBinding) {
+            super(movierowBinding.getRoot());
 
-            title = itemView.findViewById(R.id.IdRowTitleName);
-            imageView = itemView.findViewById(R.id.IdMovieImage);
-            date = itemView.findViewById(R.id.IdRowDate);
+            this.movierowBinding = movierowBinding;
 
 
         }

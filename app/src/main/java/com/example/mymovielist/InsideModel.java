@@ -1,5 +1,11 @@
 package com.example.mymovielist;
 
+import android.widget.ImageView;
+
+import androidx.databinding.BindingAdapter;
+
+import com.bumptech.glide.Glide;
+
 public class InsideModel {
 
     private String title;
@@ -78,4 +84,15 @@ public class InsideModel {
     public void setOriginal_language(String original_language) {
         this.original_language = original_language;
     }
+
+
+    @BindingAdapter("android:load_image")
+    public static void loadImage(ImageView imageView,String imageUrl)
+    {
+        String imageUrlFirstPart = "https://image.tmdb.org/t/p/w500";
+        Glide.with(imageView.getContext()).load(imageUrlFirstPart+imageUrl).into(imageView);
+
+    }
+
+
 }
